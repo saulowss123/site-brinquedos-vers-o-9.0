@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - Brinquedos Educativos Especiais</title>
+  <!-- Link para o CSS do Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Estilos do corpo e da estrutura geral da página */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background: #83977a;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Estilo da Navbar */
+    .navbar-custom {
+      background-color: #343a40; /* Cor padrão do navbar */
+    }
+
+    /* Estilos para os links do menu de navegação */
+    .navbar-nav a {
+      color: rgb(234, 165, 4); /* Cor dos links */
+      margin-right: 15px; /* Espaçamento entre os links */
+      text-decoration: none; /* Remove o sublinhado */
+      font-weight: bold;
+      transition: color 0.3s ease; /* Adiciona transição suave na cor */
+    }
+
+    /* Efeito ao passar o mouse sobre os links do menu */
+    .navbar-nav a:hover {
+      color: rgb(255, 255, 255); /* Muda somente a cor da letra */
+    }
+
+    /* Estilo da logo */
+    .navbar-brand img {
+      max-height: 60px;
+      height: auto;
+      width: auto;
+      border-radius: 50%;
+    }
+
+    /* Animação para as seções */
+    .animated-section {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Efeito ao passar o mouse nas seções */
+    .animated-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Estilo do botão com efeito de glow e hover */
+    .glow-on-hover {
+      width: 220px;
+      height: 50px;
+      border: none;
+      outline: none;
+      color: #fff;
+      background: #28dc04;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    /* Efeito de hover no botão */
+    .glow-on-hover:hover {
+      background-color: #e21207;
+    }
+
+    .cover-form {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    /* Estilo da imagem animada */
+    .animated-image {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Animação de fade-in para a imagem */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Estilo do container do formulário */
+    .form-container {
+      background-color: #de7a7a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilo dos elementos do formulário */
+    .form-wraper {
+      margin-bottom: 15px;
+    }
+
+    /* Sombra nos campos do formulário */
+    .form-control {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Estilo do popup de confirmação */
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 20px;
+      background-color: #28a745;
+      color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Estilo do footer */
+    footer {
+      background-color: #ab6400; /* Cor de fundo igual ao index */
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    /* Responsividade para telas menores */
+    @media (max-width: 768px) {
+      .navbar-nav {
+        text-align: center;
+      }
+
+      .navbar-nav .nav-item {
+        margin-bottom: 10px;
+      }
+
+      .navbar-brand img {
+        max-height: 50px; /* Ajusta o tamanho do logo em telas menores */
+      }
+    }
+
+    /* Efeito de zoom ao passar o mouse na logo */
+    .navbar-brand img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Estilos para o botão flutuante do WhatsApp */
+    .float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      right: 40px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      z-index: 100;
+      /* Alinha o ícone dentro do botão */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Estilo do ícone dentro do botão flutuante */
+    .float img {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container-fluid">
+      <a href="index.html" class="navbar-brand">
+        <!-- Logo da empresa -->
+        <img src="imagnes de logo/logo morro  claro.jpg" alt="Logo da Empresa" id="logoIndex">
+      </a>
+      <!-- Botão do menu para dispositivos móveis -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Itens do menu de navegação -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Seção de Formulário de Contato -->
+  <section class="cover-form animated-section">
+    <div class="container bg">
+      <div class="form-container">
+        <h2>Envie-nos uma mensagem</h2>
+        
+        <!-- Imagem personalizada com animação de fade-in -->
+        <img src="imagens/E-mail.webp" alt="Imagem Personalizada" class="animated-image">
+
+        <form id="contactForm">
+          <!-- Campo de nome -->
+          <div class="form-wraper">
+            <label for="name" class="form-label">Nome Completo</label>
+            <input type="text" class="form-control" id="name" name="name" required placeholder="Nome">
+          </div>
+          <!-- Campo de e-mail -->
+          <div class="form-wraper">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" required placeholder="E-mail">
+          </div>
+          <!-- Campo de telefone -->
+          <div class="form-wraper">
+            <label for="phone" class="form-label">Telefone</label>
+            <input type="text" class="form-control" id="phone" name="phone" required placeholder="Telefone">
+          </div>
+          <!-- Campo de mensagem -->
+          <div class="form-wraper">
+            <label for="message" class="form-label">Mensagem</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Sua mensagem"></textarea>
+          </div>
+          <!-- Botão de envio -->
+          <button type="button" class="glow-on-hover" onclick="sendWhatsAppMessage()">Enviar</button>
+          <div class="form-wraper">
+            <p>* Campos Obrigatórios</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popup de confirmação -->
+  <div id="popup" class="popup">Obrigado por entrar em contato! Retornaremos em breve.</div>
+
+  <!-- Mapa de localização centralizado -->
+  <div class="map-section" style="display: flex; justify-content: center; align-items: center; padding: 20px 0;">
+    <iframe src="https://www.google.com/maps/embed?pb=..." width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <a href="https://api.whatsapp.com/send?phone=5511992685662&text=Olá!%20Gostaria%20de%20mais%20informações." class="float" target="_blank">
+    <img src="imagens/whatsapp-icon.png" alt="WhatsApp">
+  </a>
+
+  <footer class="footer-custom">
+    <p>© 2024 Brinquedos Educativos Especiais. Todos os direitos reservados.</p>
+    <a href="contact.html">
+      <img src="imagens/iconecontato.ico" class="img-fluid" alt="Contato" style="width: 24px; height: 24px;">
+    </a>
+    <a href="https://www.instagram.com/pontoo.luz" target="_blank">
+      <img src="imagens/logo2instagram.ico" class="img-fluid" alt="Instagram" style="width: 24px; height: 24px;">
+    </a>
+  </footer>
+
+  <!-- Script para o formulário -->
+  <script>
+    function sendWhatsAppMessage() {
+      // Coleta os valores dos campos do formulário
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+
+      // Verifica se todos os campos foram preenchidos
+      if (name && email && phone && message) {
+        // Mensagem padrão
+        const defaultMessage = `Olá, meu nome é ${name}. Gostaria de entrar em contato com a empresa.`;
+
+        // Exibe o popup de mensagem enviada
+        const popup = document.getElementById('popup');
+        popup.style.display = 'block';
+
+        // Oculta o popup após 3 segundos
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 3000);
+
+        // Limpa o formulário
+        document.getElementById('contactForm').reset();
+
+        // Opcionalmente, você pode enviar a mensagem por e-mail ou armazená-la em um banco de dados aqui.
+
+      } else {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+      }
+    }
+  </script>
+  <!-- Scripts do Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

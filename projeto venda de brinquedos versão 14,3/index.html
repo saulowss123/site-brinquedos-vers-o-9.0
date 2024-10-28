@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Brinquedos Educativos Especiais</title>
+ <!-- Link para o CSS do Bootstrap -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ <!-- Inclui o Fireworks.js para os fogos de artifício -->
+ <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/fireworks.js"></script>
+ <style>
+ /* Estilos gerais para o corpo do site */
+ body, html {
+   height: 100%;
+   margin: 0;
+ }
+
+ /* Preloader: fundo com logo centralizado enquanto o site carrega */
+ #preloader {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: #ab6400; /* Cor de fundo marrom */
+   display: flex;
+   flex-direction: column; /* Para alinhar a frase abaixo da logo */
+   justify-content: center;
+   align-items: center;
+   z-index: 9999; /* Garantir que o preloader esteja acima de tudo */
+ }
+
+ /* Ajusta o tamanho da logo no preloader */
+ #preloader img {
+   width: 150px;
+   border-radius: 61%;
+ }
+
+ /* Estiliza a frase abaixo da logo no preloader */
+ #preloader p {
+   margin-top: 20px;
+   font-size: 1.2rem;
+   color: #ffffff;
+   opacity: 0;
+   animation: dropIn 2s forwards; /* Animação de queda */
+ }
+
+ /* Animação para a frase cair */
+ @keyframes dropIn {
+   0% {
+     opacity: 0;
+     transform: translateY(-50px);
+   }
+   100% {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+
+ /* Estilo da seção principal com a imagem de fundo */
+ .hero-section {
+   display: flex;
+   align-items: flex-start;
+   justify-content: flex-start;
+   height: 100vh; /* Ocupa toda a altura da tela */
+   background-image: url('./imagens/ImagenBriquedos.jpeg'); /* Imagem de fundo */
+   background-size: cover; /* Imagem cobre toda a área */
+   background-position: center; /* Imagem centralizada */
+   background-repeat: no-repeat; /* Não repetir a imagem */
+   color: rgb(249, 249, 249); /* Cor do texto */
+   position: relative;
+   padding-top: 700px; /* Espaçamento no topo */
+   padding-left: 100px; /* Espaçamento à esquerda */
+ }
+
+ /* Sobreposição de cor na imagem de fundo para maior contraste */
+ .hero-section::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, 0.5); /* Fundo preto transparente */
+   z-index: 1; /* Colocar antes do conteúdo, mas acima da imagem */
+ }
+
+ /* Estilos do texto principal */
+ .hero-text {
+   position: absolute;
+   top: 0%;
+   z-index: 10; /* Para garantir que o texto esteja acima da sobreposição */
+   max-width: 1000px;
+   padding: 50px;
+ }
+
+ /* Tamanho do título na seção hero */
+ .hero-text h1 {
+   font-size: 3rem;
+   font-weight: bold;
+   animation: fadeInUp 2s; /* Animação no h1 */
+ }
+
+ /* Animação para h3 */
+ h3 {
+   animation: fadeInUp 2s; /* Animação nos h3 */
+ }
+
+ /* Animação fadeInUp */
+ @keyframes fadeInUp {
+   from {
+     opacity: 0;
+     transform: translateY(20px);
+   }
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+
+ /* Parágrafo da hero */
+ .hero-text p {
+   font-size: 1.2rem;
+   margin-bottom: 50px;
+ }
+
+ /* Estilos para a responsividade (para telas menores que 768px) */
+ @media (max-width: 768px) {
+   .hero-section {
+     flex-direction: column;
+     text-align: center; /* Centraliza o texto em telas menores */
+     padding-top: 20px;
+     padding-left: 0;
+   }
+
+   .hero-text {
+     max-width: 100%;
+     padding: 10px;
+   }
+ }
+
+ /* Estilos para os links do menu de navegação */
+ .navbar-nav a {
+   color: rgb(234, 165, 4); /* Cor dos links */
+   margin-right: 15px; /* Espaçamento entre os links */
+   text-decoration: none; /* Remove o sublinhado */
+   font-weight: bold;
+   transition: color 0.3s ease; /* Adiciona transição suave na cor */
+ }
+
+ /* Efeito ao passar o mouse sobre os links do menu */
+ .navbar-nav a:hover {
+   /* Remove o sublinhado e o quadrado de cor */
+   color: rgb(255, 255, 255); /* Muda somente a cor da letra */
+ }
+
+ /* Fundo marrom para a seção */
+ .bg-brown {
+   background-color: #ab6400;
+ }
+
+ /* Estilos para os títulos das seções */
+ .section-transforma-vidas h2 {
+   font-size: 2.5rem;
+   font-weight: bold;
+   animation: fadeInUp 2s; /* Animação no h2 */
+ }
+
+ .section-transforma-vidas p,
+ .section-brinquedos-educativos p {
+   font-size: 1.2rem;
+   margin-bottom: 20px;
+ }
+
+ /* Estilos para os cards de conteúdo */
+ .card {
+   border: none;
+   background-color: #1dce0698;
+ }
+
+ .card-body {
+   padding: 10px;
+ }
+
+ /* Estilos para imagens */
+ .img-fluid {
+   border-radius: 8px;
+   margin-top: 15px;
+   transition: transform 0.3s ease; /* Transição suave */
+ }
+
+ /* Animação básica ao passar o mouse sobre as imagens */
+ .img-fluid:hover {
+   transform: scale(1.05);
+ }
+
+ /* Botão especial com cor personalizada */
+ .btn-special {
+   background-color: #f9a705fa; /* Cor personalizada para os botões */
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   border-radius: 10px;
+   text-transform: uppercase;
+   font-weight: bold;
+   transition: background-color 0.3s ease; /* Animação suave ao mudar de cor */
+ }
+
+ /* Quando o mouse passa por cima do botão */
+ .btn-special:hover {
+   background-color: rgb(10, 176, 187); /* Cor ao passar o mouse */
+   color: #000000;
+ }
+
+ /* Botão outline especial */
+ .btn-outline-special {
+   background-color: #f9a705fa; /* Cor padrão marrom */
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   border-radius: 10px;
+   text-transform: uppercase;
+   font-weight: bold;
+   transition: background-color 0.3s ease; /* Transição suave */
+ }
+
+ /* Cor ao passar o mouse */
+ .btn-outline-special:hover {
+   background-color: rgb(26, 187, 8);
+   color: #000000;
+ }
+ .footer-custom {
+  background-color: #ab6400;
+  color: rgb(245, 245, 245);
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-custom a {
+  color: rgb(245, 245, 245);
+  text-decoration: none;
+}
+
+.footer-custom a:hover {
+  text-decoration: underline;
+}
+
+.footer-custom .social-icons {
+  margin-top: 10px;
+}
+
+.footer-custom .social-icons a {
+  margin: 0 10px;
+}
+
+.footer-custom .social-icons img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.footer-custom .social-icons img:hover {
+  transform: scale(1.1);
+}
+
+
+
+ /* Estilização para o botão 'Saiba mais...' */
+ .btn-leia-mais {
+   background-color: #d71d08; /* Cor de fundo */
+   color: white; /* Cor do texto */
+   padding: 10px 20px; /* Espaçamento interno */
+   font-size: 16px; /* Tamanho da fonte */
+   border: none; /* Remove a borda */
+   border-radius: 5px; /* Cantos arredondados */
+   cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+   transition: background-color 0.3s ease; /* Efeito de transição */
+ }
+
+ .btn-leia-mais:hover {
+   background-color: #ebad29; /* Cor de fundo ao passar o mouse */
+ }
+
+
+ /* Classe para indicar o estado de carregamento */
+ .loading {
+   overflow: hidden; /* Evita scroll durante o carregamento */
+ }
+
+ /* Estilos para o botão flutuante do WhatsApp */
+ .float {
+   position: fixed;
+   width: 60px;
+   height: 60px;
+   bottom: 40px;
+   right: 40px;
+  
+   border-radius: 50px;
+   text-align: center;
+   font-size: 30px;
+   z-index: 100;
+   /* Alinha o ícone dentro do botão */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ /* Estilo do ícone dentro do botão flutuante */
+ .float img {
+   width: 71px;
+   height: 71px;
+ }
+
+ /* Estilos do navbar */
+ .navbar-custom {
+   background-color: #343a40; /* Cor padrão do navbar */
+   /* Removido height para permitir responsividade */
+ }
+
+ /* Ajuste do tamanho da logo no navbar */
+ .navbar-brand img {
+   width: 60px;
+   height: auto;
+   border-radius: 50%;
+ }
+
+ </style>
+
+</head>
+<body class="loading">
+ <!-- Preloader: Exibe o logo enquanto o site carrega -->
+ <div id="preloader">
+   <img src="imagnes de logo/logo morro  claro.jpg" alt="Logo da Empresa">
+   <p>Ponto e luz para as crianças do futuro!</p>
+ </div>
+
+ <!-- Caixa de navegação -->
+ <nav class="navbar navbar-expand-lg navbar-dark navbar-custom p-3">
+   <div class="container-fluid">
+     <!-- Logo da empresa -->
+     <a class="navbar-brand" href="#">
+       <img src="imagnes de logo/logo morro  claro.jpg" alt="Logo da Empresa" id="logoIndex">
+     </a>
+     <!-- Botão do menu para dispositivos móveis -->
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <!-- Itens do menu de navegação -->
+     <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav ms-auto">
+         <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+         <li class="nav-item"><a class="nav-link" href="products.html">Produtos</a></li>
+         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+         <li class="nav-item"><a class="nav-link" href="contact.html">Contato</a></li>
+       </ul>
+     </div>
+   </div>
+ </nav>
+
+ <!-- Seção principal com imagem de fundo -->
+ <section class="hero-section">
+   <div class="hero-text">
+     <h1>Brinquedos Educativos Especiais</h1>
+     <p>Descubra como nossos brinquedos ajudam crianças especiais e superdotadas a aprender e crescer.</p>
+     <div>
+       <!-- Botões para navegar até as páginas de produtos e contato -->
+       <a href="products.html" class="btn btn-special"> Conheça nossos produtos </a>
+       <a href="contact.html" class="btn btn-outline-special">Entre em contato</a>
+     </div>
+   </div>
+ </section>
+
+ <!-- Segunda tela do site -->
+ <section class="section-transforma-vidas">
+   <div class="container py-5">
+     <div class="row align-items-center">
+       <div class="col-lg-6">
+         <h2>Brinquedos que transformam vidas</h2>
+         <p>
+           Na Ponto Luz, oferecemos brinquedos educativos de madeira que ajudam crianças especiais e superdotadas a desenvolver suas habilidades de forma lúdica e significativa.
+           <span id="text-completo" class="text-completo" style="display:none;">
+             Nossos brinquedos são projetados para melhorar habilidades motoras, sociais e cognitivas. Cada brinquedo é cuidadosamente desenvolvido para estimular a criatividade e incentivar o aprendizado de uma maneira divertida e inovadora.
+           </span>
+         </p>
+         <button id="btn-leia-mais" class="btn-leia-mais" onclick="mostrarMais()">Saiba mais... </button>
+       </div>
+       <div class="col-lg-6 text-center">
+         <img src="./imagens/ImagenBriquedos.jpeg" alt="Boneco de madeira" class="img-fluid rounded">
+         <div class="mt-4 bg-brown text-white p-3 rounded">
+           <div class="row">
+             <div class="col">
+               <h3>150+</h3>
+               <p>Apoio contínuo</p>
+             </div>
+             <div class="col">
+               <h3>15</h3>
+               <p>Qualidade garantida</p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <!-- Seção de brinquedos educativos -->
+ <section class="section-brinquedos-educativos py-5">
+   <div class="container">
+     <h2 class="text-center">Brinquedos Educativos</h2>
+     <p class="text-center">Desenvolvemos brinquedos que ajudam crianças especiais e superdotadas a aprender e se divertir.</p>
+     <div class="row mt-5">
+       <div class="col-lg-6 d-flex flex-column align-items-center">
+         <div class="card">
+           <div class="card-body">
+             <h3>Contato e Suporte</h3>
+             <p>Estamos aqui para ajudar! Entre em contato para mais informações sobre nossos produtos e serviços.</p>
+           </div>
+           <img src="imagens/fundo site escuro.webp" class="img-fluid" alt="Imagem de brinquedos de suporte">
+         </div>
+       </div>
+
+       <div class="col-lg-6 d-flex flex-column align-items-center">
+         <div class="card">
+           <div class="card-body">
+             <h3>Benefícios dos Brinquedos</h3>
+             <p>Cada brinquedo é projetado para estimular habilidades e promover o desenvolvimento infantil de forma lúdica.</p>
+           </div>
+           <img src="./imagens/brinquedoquadrado.png" class="img-fluid" alt="Imagem de brinquedos educativos">
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <!-- Botão flutuante do WhatsApp -->
+ <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO&text=Sua%20mensagem" class="float" target="_blank">
+   <img src="imagens/—Pngtree—polygon whatsapp icon whatsapp icon_3648444.png" alt="WhatsApp">
+ </a>
+
+ <!-- Script para funcionalidade do botão "Saiba Mais" -->
+ <script>
+ function mostrarMais() {
+   var textoCompleto = document.getElementById("text-completo");
+   var botao = document.getElementById("btn-leia-mais");
+
+   // Alterna entre mostrar mais ou menos texto
+   if (textoCompleto.style.display === "none") {
+     textoCompleto.style.display = "inline";
+     botao.innerHTML = "Mostrar menos";
+   } else {
+     textoCompleto.style.display = "none";
+     botao.innerHTML = "Saiba mais...";
+   }
+ }
+ </script>
+
+ <!-- Script para esconder o preloader e iniciar os fogos de artifício -->
+ <script>
+ // Função para iniciar os fogos de artifício
+ function startFireworks() {
+   // Cria uma nova instância dos fogos de artifício
+   const container = document.body;
+   const fireworks = new Fireworks(container, {
+     hue: { min: 0, max: 360 }, // Cores variadas
+     delay: { min: 15, max: 30 },
+     rocketsPoint: 50,
+     speed: 2,
+     acceleration: 1.05,
+     friction: 0.98,
+     gravity: 1.5,
+     particles: 100,
+     trace: 3,
+     explosion: 5,
+     boundaries: {
+       x: 50,
+       y: 50,
+       width: container.clientWidth - 100,
+       height: container.clientHeight - 100,
+     },
+     sound: {
+       enabled: true,
+       files: [
+         'https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/sounds/explosion0.mp3',
+         'https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/sounds/explosion1.mp3',
+       ],
+       volume: { min: 4, max: 8 },
+     },
+   });
+   fireworks.start();
+   // Para os fogos de artifício após alguns segundos
+   setTimeout(function () {
+     fireworks.stop();
+   }, 5000); // Fogos de artifício duram 5 segundos
+ }
+
+ // Esconde o preloader e inicia os fogos de artifício
+ window.addEventListener('load', function () {
+   setTimeout(function () {
+     document.body.classList.remove('loading');
+     document.getElementById('preloader').style.display = 'none';
+     // Inicia os fogos de artifício
+     startFireworks();
+
+     // Evento de clique no logo para iniciar os fogos de artifício
+     document.getElementById('logoIndex').addEventListener('click', function () {
+       startFireworks();
+     });
+
+   }, 3500); // Esconde o preloader após 3,5 segundos
+ });
+ </script>
+
+ <!-- Scripts do Bootstrap -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ <footer class="footer-custom">
+  <p>
+    PONTO LUZ - <a href="https://www.google.com/maps/place/Endere%C3%A7o+X" target="_blank">Endereço X</a> - Telefone <a href="tel:+5517988157556">(17) 98815-7556</a>
+  </p>
+  <p>
+    © 2024 Brinquedos Educativos Especiais. Todos os direitos reservados a Ponto Luz - Desenvolvido por
+    <a href="https://github.com/SauloOliveira" target="_blank">Saulo Oliveira</a> -
+    <a href="https://github.com/TiagoAzevedo" target="_blank">Tiago Azevedo</a> -
+    <a href="https://github.com/ValdineiSateli" target="_blank">Valdinei Sateli</a>.
+  </p>
+  <div class="social-icons">
+    <a href="https://wa.me/55179988157556" target="_blank">
+      <img src="imagens/—Pngtree—polygon whatsapp icon whatsapp icon_3648444.png" class="img-fluid" alt="WhatsApp" />
+    </a>
+    <a href="contact.html">
+      <img src="imagens/iconecontato.ico" class="img-fluid" alt="Contato" />
+    </a>
+    <a href="https://www.instagram.com/pontoo.luz" target="_blank">
+      <img src="imagens/logo2instagram.ico" class="img-fluid" alt="Instagram" />
+    </a>
+  </div>
+</footer>
+
+
+ <!-- Outros scripts -->
+ <script src="cookies.js"></script>
+ <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+ <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+</body>
+</html>

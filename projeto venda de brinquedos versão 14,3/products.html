@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante a responsividade da página -->
+    <title>Produtos - Brinquedos de Madeira</title>
+    <!-- Link para o Bootstrap para facilitar o layout responsivo e estilização -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link para a fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Identidade visual atualizada */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0e0e0; /* Cor de fundo atualizada */
+            background-image: url('imagens/fundo site escuro.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background 0.5s ease;
+        }
+
+        /* Navbar estilizada */
+        .navbar-custom {
+            background-color: #343a40; /* Cor padrão do navbar */
+        }
+
+        /* Estilo da logo */
+        .navbar-brand img {
+            max-height: 60px;
+            height: auto;
+            width: auto;
+            border-radius: 50%;
+        }
+
+        /* Estilos para os links do menu de navegação */
+        .navbar-nav a {
+            color: rgb(234, 165, 4); /* Cor dos links */
+            margin-right: 15px; /* Espaçamento entre os links */
+            text-decoration: none; /* Remove o sublinhado */
+            font-weight: bold;
+            transition: color 0.3s ease; /* Adiciona transição suave na cor */
+        }
+
+        /* Efeito ao passar o mouse sobre os links do menu */
+        .navbar-nav a:hover {
+            color: rgb(255, 255, 255); /* Muda somente a cor da letra */
+        }
+
+        /* Destaque para o item ativo */
+        .navbar-nav .nav-link.active {
+            color: rgb(234, 165, 4); /* Cor padrão para o link ativo */
+        }
+
+        /* Ajuste para o link ativo no hover */
+        .navbar-nav .nav-link.active:hover {
+            color: rgb(255, 255, 255); /* Muda a cor ao passar o mouse */
+        }
+
+        /* Estilo do botão toggle no modo responsivo */
+        .navbar-toggler {
+            border-color: #f0c14b;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='https://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(240,193,75,0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        /* Seção de produtos */
+        .products-section h2 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f80303,#f0c14b);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 2s ease-in-out;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Estilos dos cards de produto */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos das imagens no carousel */
+        .carousel-item img {
+            width: 100%;
+            height: 200px; /* Altura padrão para todas as imagens */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Personalização dos botões de compra via WhatsApp */
+        .btn-whatsapp {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg') no-repeat center;
+            background-size: cover;
+            border: none;
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* Botão flutuante do WhatsApp no canto inferior direito */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        /* Estilo do rodapé */
+        .footer-custom {
+            background-color: #ab6400;
+            color: rgb(245, 245, 245);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer-custom .social-icons {
+            margin-top: 10px;
+        }
+
+        .footer-custom .social-icons a {
+            margin: 0 10px;
+        }
+
+        .footer-custom .social-icons img {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-custom .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .Logo {
+            max-height: 60px;
+            height: auto;
+            width: auto;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar (barra de navegação) -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container-fluid">
+            <!-- Logo clicável que redireciona para index.html -->
+            <a class="navbar-brand" href="index.html">
+                <img src="imagnes de logo/logo morro  claro.jpg" alt="Logo Brinquedos de Madeira" class="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Ícone do toggle destacado -->
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contatos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção de Produtos -->
+    <section class="products-section py-5">
+        <div class="container">
+            <h2>Nossos Produtos</h2>
+            <div class="row">
+                <!-- Produto com Slider de Imagens 1 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Catapulta de madeira</h5>
+                            <p class="card-text">O desafio é conseguir a maior pontuação, encaixando a bolinha no lugar certo. O desafio se torna ainda maior com o tempo marcado pela ampulheta!</p>
+                            <div id="carouselProduto1" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/Produtos 1/catapulta de madeira 1.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 1/catapulta de madeira 2.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 1/catapulta de madeira 3.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto1" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto1" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/6174277502681796/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto com Slider de Imagens 2 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Misture e combine fantasias divertidas</h5>
+                            <p class="card-text">Combine e misture as peças do quebra-cabeça para se divertir ainda mais!</p>
+                            <div id="carouselProduto2" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/Produtos 2/1a817bd6-4f9b-4b6f-b52c-a29a08655471.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 2/4cf6d4f2-dcd7-4440-a099-687f9e8b4c2a.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 2/ac34e1c0-32a0-470b-98bf-17c932e06255.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto2" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto2" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/23916151227990908/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto com Slider de Imagens 3 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Carrinho de fricção de elástico</h5>
+                            <p class="card-text">Um brinquedo para reviver sua infância junto com seu filho(a)! Carrinho em madeira de fricção.</p>
+                            <div id="carouselProduto3" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/produtos 3/073d816a-3e6c-4164-9c54-0bf704e772a9.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/produtos 3/31e47962-acd5-489c-bbb7-7582eba8cc0b.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/produtos 3/7e1faee3-f06d-4f23-ac53-4865cd0722bc.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto3" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto3" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/7822274557880979/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda linha de produtos -->
+            <div class="row">
+                <!-- Produto com Slider de Imagens 4 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Bancada de ferramentas</h5>
+                            <p class="card-text">Bancadinha de ferramentas com todos os utensílios para as crianças se divertirem muito!</p>
+                            <div id="carouselProduto4" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/Produtos 4/50d12cc3-a2ef-4afa-a38f-083c2c926a54.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 4/ac961973-a624-43a6-9e71-8430cdb932f6.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 4/d7be5e7a-6b67-4932-a4f8-813b91f9dd22.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto4" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto4" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/6174277502681796/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto com Slider de Imagens 5 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Elefantinho aramado</h5>
+                            <p class="card-text">Brinquedo em madeira e material resistente. Estimula a percepção visual e coordenação motora.</p>
+                            <div id="carouselProduto5" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/produtos 5/1c883cb0-35c4-4f82-a4db-edbc1db9c0e9.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/produtos 5/27bc6243-a248-4bb9-91fe-4b18cf7f7c0c.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/produtos 5/9eb2dd93-288c-40d1-9e97-8c57cbbd9b75.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto5" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto5" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/6536108369798234/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto com Slider de Imagens 6 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Jogo Arrancada</h5>
+                            <p class="card-text">Vem com 6 carrinhos em madeira e 2 dados.</p>
+                            <div id="carouselProduto6" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/Produtos 6/5c786bcf-64bc-49ee-8ec2-a530eaba6fe1.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 6/a1edf918-e09b-4428-8074-fd2cbc59a424.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 6/ec403403-d861-4c94-b0d2-495c0326a657.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto6" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto6" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/7580965631954560/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terceira linha de produtos -->
+            <div class="row">
+                <!-- Produto com Slider de Imagens 7 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Descobrindo as sílabas</h5>
+                            <p class="card-text">Um jogo super legal e lúdico para crianças em fase de alfabetização.</p>
+                            <div id="carouselProduto7" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/Produtos 7/38b0b7f3-0d5d-4d10-bcac-7772662f6ca7.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 7/8684b34c-9e58-4d77-b9b2-58e3abd5656a.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 7/f356fa80-eb94-4636-a8e2-e242a98496e9.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto7" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto7" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/8006298246128721/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto com Slider de Imagens 8 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Jogo de cartas Color Addict Kids</h5>
+                            <p class="card-text">Color Addict Kids é um jogo de cartas divertido que desafia as crianças a combinar cores rapidamente, promovendo agilidade e percepção visual!</p>
+                            <div id="carouselProduto8" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/Produtos 8/4a1e1149-db7a-459d-9250-8323605b6e9d.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 8/5fca4b6e-c2a0-487c-ab91-eb4c53153f14.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/Produtos 8/b40461a5-3a2b-46db-96f0-f168ec5f75c2.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto8" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto8" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/8164111140340625/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto com Slider de Imagens 9 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Jogo Dino escavação</h5>
+                            <p class="card-text">Um tabuleiro cheio de aventuras pré-históricas e desafios para os pequenos encontrarem os ossos de dinossauro.</p>
+                            <div id="carouselProduto9" class="carousel slide mb-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="imagens produtos/produtos 9/806dc66c-f61e-448d-ba56-24765a764b55.png" alt="Imagem 1 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/produtos 9/9129001b-d43b-4d97-a428-127f5f031a50.png" alt="Imagem 2 do produto">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="imagens produtos/produtos 9/eea3ba48-bb9c-4155-8111-b77103930005.png" alt="Imagem 3 do produto">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto9" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto9" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                            </div>
+                            <!-- Botão de compra via WhatsApp -->
+                            <a href="https://wa.me/p/6174277502681796/5517992083569" class="btn-whatsapp mt-auto align-self-start" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botão flutuante do WhatsApp no canto inferior direito -->
+    <a href="https://wa.me/5517992083569" class="whatsapp-float btn-whatsapp" target="_blank"></a>
+
+    <!-- Seção de rodapé -->
+    <footer class="footer-custom">
+        <div class="container">
+            <p>© 2024 Brinquedos Educativos Especiais. Todos os direitos reservados.</p>
+            <div class="social-icons">
+                <a href="contact.html">
+                    <img src="imagens/iconecontato.ico" alt="Contato"/>
+                </a>
+                <a href="https://www.instagram.com/pontoo.luz" target="_blank">
+                    <img src="imagens/logo2instagram.ico" alt="Instagram"/>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

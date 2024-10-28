@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Brinquedos Educativos Especiais</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos do site */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background: #b8be07a3;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glow-on-hover {
+            width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .cover-form {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .animated-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-wraper {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .popup.success { border-left: 5px solid green; }
+        .popup.error { border-left: 5px solid red; }
+
+        /* Estilo do footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Estilo do mapa */
+        #map {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar para navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="index.html">Brinquedos Educativos Especiais</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção de Formulário de Contato -->
+    <section class="cover-form">
+        <div class="container bg">
+            <div class="form-container">
+                <h2>PODE ACREDITAR, POR DENTRO É AINDA MAIS BONITO.</h2>
+                
+                <img src="imagens/brinquedos_quadro.jpeg" alt="Imagem Personalizada" class="animated-image">
+
+                <!-- Formulário de contato usando FormSubmit.co -->
+                <form action="https://formsubmit.co/tiago.azevedo.massarin@gmail.com" method="POST" onsubmit="return handleSubmit(event)">
+                    <!-- Campos ocultos necessários para o FormSubmit.co -->
+                    <input type="hidden" name="_next" value="index.html">
+                    <input type="hidden" name="_subject" value="Nova mensagem de contato">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="form-wraper">
+                        <label for="name" class="form-label">Nome Completo</label>
+                        <input type="text" class="form-control" id="name" name="name" required placeholder="Nome">
+                    </div>
+                    <div class="form-wraper">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="E-mail">
+                    </div>
+                    <div class="form-wraper">
+                        <label for="phone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" required placeholder="Telefone">
+                    </div>
+                    <div class="form-wraper">
+                        <label for="message" class="form-label">Mensagem</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Sua mensagem"></textarea>
+                    </div>
+                    <button type="submit" class="glow-on-hover">Enviar</button>
+                </form>
+
+                <!-- Mapa de localização -->
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509431!2d144.95373531531866!3d-37.81627977975133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf4c31b86b1b567!2sFederation%20Square%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2sau!4v1604113438178!5m2!1sen!2sau" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pop-up para feedback de sucesso -->
+    <div id="popup" class="popup"></div>
+
+    <!-- Footer -->
+    <footer>
+        © 2024 Brinquedos Educativos Especiais - Todos os direitos reservados.
+    </footer>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para exibir o pop-up e redirecionar após o envio do formulário
+        function handleSubmit(event) {
+            event.preventDefault(); // Evita o envio padrão para adicionar funcionalidades personalizadas
+
+            // Exibe o pop-up de sucesso
+            showPopup("Mensagem enviada com sucesso!", "success");
+
+            // Aguarda 3 segundos e redireciona para a página inicial
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 3000);
+
+            // Permite o envio do formulário após a função customizada ser executada
+            return true;
+        }
+
+        // Função para mostrar o pop-up
+        function showPopup(message, type) {
+            const popup = document.getElementById('popup');
+            popup.className = 'popup ' + type;
+            popup.innerText = message;
+            popup.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
